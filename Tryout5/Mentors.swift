@@ -1,54 +1,20 @@
 //
-//  ViewController.swift
-//  Tryout5
+//  Mentors.swift
+//  Mentors
 //
 //  Created by Arnav Mehta on 8/2/21.
 //
 
-import UIKit
+import Foundation
 
-
-//array of objects with properties firstName,lastName,description, and profile
-var mentors = [Mentors]()
-
-
-class ViewController: UIViewController {
-
-    //retrieves data to be parsed, calls parsing method
-    override func viewDidLoad() {
-            let urlString = "https://api.hackillinois.org/upload/blobstore/mentors/"
-            if let url = URL(string: urlString) {
-                if let data = try? Data(contentsOf: url) {
-                    parse(json:data)
-                }
-                }
-    }
+struct Mentors: Codable{
+    var description: String
+    var firstName: String
+    var lastName: String
+    var profile: String
+     
     
-    //If button gets pressed displays list of mentors
-   @IBAction func didTapButton()
-    {
-        let vc = MyTableViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-   
-    
-    
-
-    func parse(json: Data) {
-        let decoder = JSONDecoder()
-        
-        if let jsonMentors = try? decoder.decode(Mentorss.self, from: json) {
-            //gets the data property(with firstName, lastName, etc.)
-            mentors = jsonMentors.data
-            print(mentors)
-            
-        }
-    }
-
 }
-
-
 
 
 /*
